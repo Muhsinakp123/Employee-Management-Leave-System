@@ -1,0 +1,119 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Admin Dashboard</h2>
+
+    <!-- Summary Cards -->
+    <div class="row text-center mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0 bg-primary text-white">
+                <div class="card-body">
+                    <h5>Total Employees</h5>
+                    <h3>{{ total_employees }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm border-0 bg-info text-white">
+                <div class="card-body">
+                    <h5>Total Leaves</h5>
+                    <h3>{{ total_leaves }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 mb-3">
+            <div class="card shadow-sm border-0 bg-warning text-dark">
+                <div class="card-body">
+                    <h5>Pending</h5>
+                    <h3>{{ pending_count }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 mb-3">
+            <div class="card shadow-sm border-0 bg-success text-white">
+                <div class="card-body">
+                    <h5>Approved</h5>
+                    <h3>{{ approved_count }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 mb-3">
+            <div class="card shadow-sm border-0 bg-danger text-white">
+                <div class="card-body">
+                    <h5>Rejected</h5>
+                    <h3>{{ rejected_count }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leave Management Table -->
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Manage Leave Requests</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle text-center">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Department</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for leave in leaves %}
+                        <tr>
+                            <td>{{ leave.employee.full_name }}</td>
+                            <td>{{ leave.employee.department }}</td>
+                            <td>{{ leave.start_date }}</td>
+                            <td>{{ leave.end_date }}</td>
+                            <td>{{ leave.reason }}</td>
+                            <td>
+                                {% if leave.status == 'Approved' %}
+                                    <span class="badge bg-success">{{ leave.status }}</span>
+                                {% elif leave.status == 'Rejected' %}
+                                    <span class="badge bg-danger">{{ leave.status }}</span>
+                                {% else %}
+                                    <span class="badge bg-warning text-dark">{{ leave.status }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if leave.status == 'Pending' %}
+                                <form method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="leave_id" value="{{ leave.id }}">
+                                    <button type="submit" name="action" value="approve" class="btn btn-success btn-sm">Approve</button>
+                                    <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm">Reject</button>
+                                </form>
+                                {% else %}
+                                    <span class="text-muted">No Actions</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="7">No leave requests found.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="text-center mt-4">
+       <a href="{% url 'admin_leave_list' %}" class="btn btn-outline-primary">Manage Leave Requests</a>
+       <a href="{% url 'manage_employees' %}" class="btn btn-outline-info">Manage Employees</a>
+       <a href="{% url 'admin_profile' %}" class="btn btn-outline-dark">Profile</a>
+       <a href="{% url 'logout' %}" class="btn btn-outline-danger">Logout</a>
+    </div>
+
+</div>
+{% endblock %}

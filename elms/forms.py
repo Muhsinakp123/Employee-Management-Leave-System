@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Leave
-from .models import UserProfile
+from .models import Profile
 
 class UserForm(forms.ModelForm):
     full_name = forms.CharField(max_length=100)
@@ -69,19 +69,16 @@ class LeaveForm(forms.ModelForm):
 
 
 
-class UserProfileForm(forms.ModelForm):
-    first_name = forms.CharField(max_length=30, required=True, label='First Name')
-    last_name = forms.CharField(max_length=30, required=True, label='Last Name')
-    email = forms.EmailField(required=True, label='Email')
+
+class ProfileForm(forms.ModelForm):
+    email = forms.EmailField(required=True, label="Email")
 
     class Meta:
-        model = UserProfile
-        fields = ['employee_id', 'department']
+        model = Profile
+        fields = ['full_name', 'emp_id', 'department', 'email']
 
     def save(self, commit=True):
         profile = super().save(commit=False)
-        profile.user.first_name = self.cleaned_data['first_name']
-        profile.user.last_name = self.cleaned_data['last_name']
         profile.user.email = self.cleaned_data['email']
         if commit:
             profile.user.save()

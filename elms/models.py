@@ -29,13 +29,5 @@ class Leave(models.Model):
         return f"{self.full_name} ({self.emp_id})"
     
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    employee_id = models.CharField(max_length=20, unique=True)
-    department = models.CharField(max_length=50)
-
-    def __str__(self):
-        return f"{self.user.username} Profile"
-
 
 

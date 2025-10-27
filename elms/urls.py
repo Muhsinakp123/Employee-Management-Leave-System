@@ -18,10 +18,14 @@ urlpatterns = [
     path('leaves/<int:pk>/', views.leave_detail, name='leave_detail'),
     path('leaves/<int:pk>/edit/', views.leave_edit, name='leave_edit'),
     path('leaves/<int:pk>/delete/', views.leave_delete, name='leave_delete'),
-    path('admin/leaves/', views.admin_leave_list, name='admin_leave_list'),
+
     
-    path('profile/', views.profile, name='profile'),
+    path('profile/', views.profile_view, name='profile'),
     path('profile/update/', views.profile_update, name='profile_update'),
     path('profile/delete/', views.profile_delete, name='profile_delete'),
      
+    path('dashboard/manage_employees/', views.manage_employees, name='manage_employees'),
+    path('admin_leave_list/', views.admin_leave_list, name='admin_leave_list'),
+    path('dashboard/profile/', views.admin_profile, name='admin_profile'),
+
 ]

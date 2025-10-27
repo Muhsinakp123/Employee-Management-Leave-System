@@ -1,0 +1,41 @@
+{% extends 'master.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">👥 Manage Employees</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Employee ID</th>
+                <th>Full Name</th>
+                <th>Department</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emp in employees %}
+            <tr>
+                <td>{{ emp.emp_id }}</td>
+                <td>{{ emp.full_name }}</td>
+                <td>{{ emp.department }}</td>
+                <td>{{ emp.user.email }}</td>
+                <td>{{ emp.user.username }}</td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center text-muted">No employees found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center mt-3">
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

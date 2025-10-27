@@ -1,17 +1,19 @@
 {% extends "master.html" %}
 {% block content %}
 <div class="container mt-5">
-    <h2 class="mb-4">My Profile</h2>
-    <div class="card shadow-sm" style="max-width: 600px;">
+    <h2 class="mb-4 text-center">My Profile</h2>
+    <div class="card shadow-sm mx-auto" style="max-width: 600px;">
         <div class="card-body">
-            <p><strong>Full Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
-            <p><strong>Username:</strong> {{ user.username }}</p>
-            <p><strong>Email:</strong> {{ user.email }}</p>
-            <p><strong>Employee ID:</strong> {{ profile.employee_id }}</p>
+            <p><strong>Full Name:</strong> {{ profile.full_name }}</p>
+            <p><strong>Employee ID:</strong> {{ profile.emp_id }}</p>
             <p><strong>Department:</strong> {{ profile.department }}</p>
-            <a href="{% url 'profile_update' %}" class="btn btn-primary mt-3">Update Profile</a>
-            <a href="{% url 'profile_delete' %}" class="btn btn-danger mt-3">Delete Profile</a>
-            <a href="{% url 'home' %}" class="btn btn-secondary mt-3">Back to Home</a>
+            <p><strong>Email:</strong> {{ profile.user.email }}</p>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a href="{% url 'profile_update' %}" class="btn btn-primary">Update Profile</a>
+                <a href="{% url 'profile_delete' %}" class="btn btn-danger">Delete Profile</a>
+                <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+            </div>
         </div>
     </div>
 </div>

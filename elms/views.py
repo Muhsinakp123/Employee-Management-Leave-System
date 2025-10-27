@@ -11,26 +11,38 @@ from .models import Profile
 from .forms import LeaveForm
 from django.contrib import messages
 from .models import Leave
-from .models import UserProfile
-from .forms import UserProfileForm
+from .forms import ProfileForm
+from django.db.models import Count
 
 
 def signup(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
+            # Create user
             user = User.objects.create_user(
                 username=form.cleaned_data['username'],
                 email=form.cleaned_data['email'],
                 password=form.cleaned_data['password']
             )
 
+            # Save full name into the user model (optional but useful)
+            full_name = form.cleaned_data['full_name']
+            if ' ' in full_name:
+                user.first_name, user.last_name = full_name.split(' ', 1)
+            else:
+                user.first_name = full_name
+            user.save()
+
+            # Create profile
             Profile.objects.create(
                 user=user,
                 full_name=form.cleaned_data['full_name'],
                 emp_id=form.cleaned_data['emp_id'],
                 department=form.cleaned_data['department']
             )
+
+            messages.success(request, "Account created successfully! Please login.")
             return redirect('login')
         else:
             messages.error(request, "Please correct the errors below.")
@@ -38,6 +50,7 @@ def signup(request):
         form = UserForm()
 
     return render(request, 'signup.html', {'form': form})
+
 
 # --- Login ---
 def login_View(request):
@@ -129,10 +142,7 @@ def reset_password(request, user_id):
 @login_required    
 def home(request):
     return render(request,'employee/home.html')    
-@login_required    
-def dashboard(request):
-    return render(request,'admin/dashboard.html')    
-
+   
 @login_required
 def apply_leave(request):
     # Get the logged-in user's employee profile
@@ -174,21 +184,6 @@ def leave_detail(request, pk):
     leave = get_object_or_404(Leave, pk=pk, employee=user_profile)
     return render(request, 'leave_detail.html', {'leave': leave})
 
-@login_required
-def leave_edit(request, pk):
-    user_profile = Profile.objects.get(user=request.user)
-    leave = get_object_or_404(Leave, pk=pk, employee=user_profile)
-    if leave.status != 'Pending':
-        return redirect('leave_list')
-
-    if request.method == 'POST':
-        form = LeaveForm(request.POST, instance=leave)
-        if form.is_valid():
-            form.save()
-            return redirect('leave_list')
-    else:
-        form = LeaveForm(instance=leave)
-    return render(request, 'employee/leave_update.html', {'form': form})
 
 @login_required
 def leave_delete(request, pk):
@@ -216,14 +211,52 @@ def leave_edit(request, pk):
 
     return render(request, 'employee/leave_update.html', {'form': form})
 
-# Admin Views
+@login_required
+def profile_view(request):
+    profile = get_object_or_404(Profile, user=request.user)
+    return render(request, 'employee/profile.html', {'profile': profile})
+
+@login_required
+def profile_update(request):
+    profile = get_object_or_404(Profile, user=request.user)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully!')
+            return redirect('profile')
+    else:
+        initial = {'email': request.user.email}
+        form = ProfileForm(instance=profile, initial=initial)
+    return render(request, 'employee/profile_update.html', {'form': form})
+
+@login_required
+def profile_delete(request):
+    if request.method == 'POST':
+        user = request.user
+        user.delete()  # deletes both User and Profile
+        messages.success(request, 'Your account has been deleted.')
+        return redirect('login')
+    return render(request, 'employee/profile_delete.html')
+
+
+
 def is_admin(user):
     return user.is_staff
 
 @login_required
 @user_passes_test(is_admin)
-def admin_leave_list(request):
-    leaves = Leave.objects.all()
+def dashboard(request):
+    total_employees = Profile.objects.count()
+    total_leaves = Leave.objects.count()
+
+    pending_count = Leave.objects.filter(status='Pending').count()
+    approved_count = Leave.objects.filter(status='Approved').count()
+    rejected_count = Leave.objects.filter(status='Rejected').count()
+
+    leaves = Leave.objects.select_related('employee').all().order_by('-id')
+
+    # Handle approve/reject directly from dashboard
     if request.method == 'POST':
         leave_id = request.POST.get('leave_id')
         action = request.POST.get('action')
@@ -233,43 +266,52 @@ def admin_leave_list(request):
         elif action == 'reject':
             leave.status = 'Rejected'
         leave.save()
+        return redirect('dashboard')
+
+    context = {
+        'total_employees': total_employees,
+        'total_leaves': total_leaves,
+        'pending_count': pending_count,
+        'approved_count': approved_count,
+        'rejected_count': rejected_count,
+        'leaves': leaves,
+    }
+    return render(request, 'admin/dashboard.html', context)
+
+
+@login_required
+@user_passes_test(is_admin)
+def manage_employees(request):
+    employees = Profile.objects.all()
+    return render(request, 'admin/manage_employees.html', {'employees': employees})
+
+@login_required
+@user_passes_test(is_admin)
+def admin_leave_list(request):
+    # Show all leave applications for admin
+    leaves = Leave.objects.select_related('employee', 'employee__user').all().order_by('-id')
+
+    if request.method == 'POST':
+        leave_id = request.POST.get('leave_id')
+        action = request.POST.get('action')
+        leave = Leave.objects.get(id=leave_id)
+
+        if action == 'approve':
+            leave.status = 'Approved'
+        elif action == 'reject':
+            leave.status = 'Rejected'
+        leave.save()
         return redirect('admin_leave_list')
-    return render(request, 'admin_leave_list.html', {'leaves': leaves})
 
-
+    return render(request, 'admin/admin_leave_list.html', {'leaves': leaves})
 
 
 @login_required
-def profile(request):
-    profile = UserProfile.objects.get(user=request.user)
-    return render(request, 'profile.html', {'user': request.user, 'profile': profile})
+@user_passes_test(is_admin)
+def admin_profile(request):
+    admin_user = request.user
+    return render(request, 'admin/admin_profile.html', {'admin_user': admin_user})
 
-@login_required
-def profile_update(request):
-    profile = UserProfile.objects.get(user=request.user)
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Profile updated successfully!')
-            return redirect('profile')
-    else:
-        initial = {
-            'first_name': request.user.first_name,
-            'last_name': request.user.last_name,
-            'email': request.user.email
-        }
-        form = UserProfileForm(instance=profile, initial=initial)
-    return render(request, 'profile_update.html', {'form': form})
-
-@login_required
-def profile_delete(request):
-    if request.method == 'POST':
-        user = request.user
-        user.delete()  # deletes user and related profile
-        messages.success(request, 'Profile deleted successfully!')
-        return redirect('login')
-    return render(request, 'profile_delete.html')
 
 
 def logout_view(request):
