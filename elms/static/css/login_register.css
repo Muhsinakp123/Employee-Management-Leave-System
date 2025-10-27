@@ -1,0 +1,190 @@
+/* General Page Styling */
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Common Container Style */
+.login-container {
+  background: #fff;
+  padding: 40px 50px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+.signup-container {
+  background: #fff;
+  padding: 5px 65px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Heading */
+.login-container h2,
+.signup-container h2 {
+  margin-bottom: 25px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Form Fields */
+form p {
+  text-align: left;
+  margin: 10px 0;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  width: 93%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s ease;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+form input:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 5px rgba(37, 117, 252, 0.4);
+}
+
+.signup-container label {
+  display: block;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Button Styling */
+button {
+  width: 70%;
+  padding: 12px;
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s ease;
+  margin: 0 auto;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Links */
+p {
+  margin-top: 15px;
+  color: #555;
+  font-size: 14px;
+}
+
+p a {
+  color: #2575fc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+/* Error Message */
+
+.errorlist {
+  color: red;
+  list-style: none;
+  margin: 5px 0;
+  padding: 0;
+}
+
+.reset-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reset-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.reset-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.forgot-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* Page Wrapper (centers both boxes) */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 20px; /* space between login box and admin box */
+}
+
+/* Admin Box Styling */
+.admin-box {
+  background-color: #f9fafb;
+  border: 2px solid #ccc;
+  padding: 15px 25px;
+  border-radius: 10px;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  animation: fadeUp 0.6s ease-in-out;
+}
+
+.admin-box h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.admin-box p {
+    text-align: center;
+  font-size: 15px;
+  margin: 4px 0;
+}
+
+/* ✨ Smooth fade + lift animation */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

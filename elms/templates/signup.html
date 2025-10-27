@@ -1,0 +1,27 @@
+{% extends 'master.html' %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+    <h2>Create Account</h2>
+   <form method="POST">
+    {% csrf_token %}
+    <p>{{ form.username.label_tag }} {{ form.username }}</p>
+    <p>{{ form.email.label_tag }} {{ form.email }}</p>
+    <p>{{ form.full_name.label_tag }} {{ form.full_name }}</p>
+    <p>{{ form.emp_id.label_tag }} {{ form.emp_id }}</p>
+    <p>{{ form.department.label_tag }} {{ form.department }}</p>
+    <p>{{ form.password.label_tag }} {{ form.password }}</p>
+    <p>{{ form.confirm_password.label_tag }} {{ form.confirm_password }}</p>
+    <button type="submit">Sign Up</button>
+</form>
+
+{% if messages %}
+  {% for message in messages %}
+    <p>{{ message }}</p>
+  {% endfor %}
+{% endif %}
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock %}

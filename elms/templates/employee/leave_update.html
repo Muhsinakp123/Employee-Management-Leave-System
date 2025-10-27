@@ -1,0 +1,41 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-3">
+    <div class="card-header bg-primary text-white text-center">
+      <h4 class="mb-0">Update Leave Request</h4>
+    </div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <table class="table table-borderless">
+          <tr>
+            <th style="width: 25%;">Start Date</th>
+            <td>{{ form.start_date }}</td>
+          </tr>
+          <tr>
+            <th>End Date</th>
+            <td>{{ form.end_date }}</td>
+          </tr>
+          <tr>
+            <th>Reason</th>
+            <td>{{ form.reason }}</td>
+          </tr>
+        </table>
+
+        <div class="d-flex justify-content-between mt-4">
+          <a href="{% url 'leave_list' %}" class="btn btn-secondary">
+            Cancel
+          </a>
+          <button type="submit" class="btn btn-success">
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

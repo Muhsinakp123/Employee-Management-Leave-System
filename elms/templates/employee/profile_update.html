@@ -1,0 +1,14 @@
+{% extends "master.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Update Profile</h2>
+    <div class="card shadow-sm p-4" style="max-width: 600px;">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Save Changes</button>
+            <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
