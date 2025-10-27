@@ -264,3 +264,61 @@
   color: #1e3a8a;
 }
 
+
+
+/* ===== Admin Profile Page Styling ===== */
+.admin-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+  background: #f8fafc;
+  font-family: "Poppins", sans-serif;
+}
+
+.admin-profile-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  padding: 40px 50px;
+  max-width: 500px;
+  width: 90%;
+  text-align: left;
+}
+
+.admin-profile-card h3 {
+  text-align: center;
+  color: #1d4ed8;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.profile-info p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.profile-info strong {
+  color: #1e40af;
+}
+
+.back-btn {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.back-btn a {
+  display: inline-block;
+  background: #2563eb;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.back-btn a:hover {
+  background: #1e3a8a;
+}

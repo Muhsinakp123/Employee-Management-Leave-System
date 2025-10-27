@@ -1,13 +1,15 @@
 {% extends 'master.html' %}
 {% block content %}
-<div class="container mt-5">
-  <div class="card shadow p-4">
-    <h3 class="text-primary mb-4">Admin Profile</h3>
 
-    <p><strong>Username:</strong> {{ admin_user.username }}</p>
-    <p><strong>Email:</strong> {{ admin_user.email }}</p>
+<div class="admin-profile-container">
+  <div class="admin-profile-card">
+    <h3>👤 Admin Profile</h3>
 
-    <a href="{% url 'dashboard' %}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+    <div class="profile-info">
+      <p><strong>Username:</strong> {{ admin_user.username }}</p>
+      <p><strong>Email:</strong> {{ admin_user.email }}</p>
+    </div>
   </div>
 </div>
+
 {% endblock %}
