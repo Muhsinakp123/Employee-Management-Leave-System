@@ -27,5 +27,6 @@ urlpatterns = [
     path('dashboard/manage_employees/', views.manage_employees, name='manage_employees'),
     path('admin_leave_list/', views.admin_leave_list, name='admin_leave_list'),
     path('dashboard/profile/', views.admin_profile, name='admin_profile'),
+     path('dashboard/manage_employees/delete/<int:emp_id>/', views.delete, name='delete_employee'),
 
 ]

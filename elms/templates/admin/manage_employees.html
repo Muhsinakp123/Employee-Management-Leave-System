@@ -1,41 +1,68 @@
 {% extends 'master.html' %}
 {% block content %}
-<div class="container mt-4">
-    <h2 class="text-center mb-4">👥 Manage Employees</h2>
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark">
-            <tr>
-                <th>Employee ID</th>
-                <th>Full Name</th>
-                <th>Department</th>
-                <th>Email</th>
-                <th>Username</th>
-                <th>Actions</th>
-            </tr>
+
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3 class="sidebar-title">Admin Panel</h3>
+    <ul class="sidebar-menu">
+      <li><a href="{% url 'dashboard' %}" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      <li><a href="{% url 'manage_employees' %}"><i class="fas fa-users"></i> Manage Employees</a></li>
+      <li><a href="{% url 'admin_leave_list' %}"><i class="fas fa-calendar-check"></i> Manage Leaves</a></li>
+      <li><a href="{% url 'admin_profile' %}"><i class="fas fa-user-circle"></i> Profile</a></li>
+      <li><a href="{% url 'logout' %}" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="topbar">
+      <h2>ADMIN DASHBOARD</h2>
+    </div>
+<div class="container mt-5 manage-emp-container">
+  <div class="card shadow-lg border-0 p-4 rounded-4">
+    <h2 class="text-center text-primary fw-semibold mb-4">👥 Manage Employees</h2>
+
+    <div class="table-responsive">
+      <table class="table table-hover align-middle manage-emp-table">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Full Name</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Actions</th>
+          </tr>
         </thead>
         <tbody>
-            {% for emp in employees %}
-            <tr>
-                <td>{{ emp.emp_id }}</td>
-                <td>{{ emp.full_name }}</td>
-                <td>{{ emp.department }}</td>
-                <td>{{ emp.user.email }}</td>
-                <td>{{ emp.user.username }}</td>
-                <td>
-                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="6" class="text-center text-muted">No employees found.</td>
-            </tr>
-            {% endfor %}
+          {% for emp in employees %}
+          <tr>
+            <td>{{ emp.emp_id }}</td>
+            <td>{{ emp.full_name }}</td>
+            <td>{{ emp.department }}</td>
+            <td>{{ emp.user.email }}</td>
+            <td>{{ emp.user.username }}</td>
+            <td>
+              <a
+                href="{% url 'delete_employee' emp.id %}"
+                class="btn btn-sm btn-outline-danger emp-btn"
+                onclick="return confirm('Are you sure you want to delete this employee?');"
+              >
+                Delete
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6" class="text-center text-muted py-3">
+              No employees found.
+            </td>
+          </tr>
+          {% endfor %}
         </tbody>
-    </table>
-
-    <div class="text-center mt-3">
-        <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+      </table>
     </div>
+  </div>
 </div>
 {% endblock %}

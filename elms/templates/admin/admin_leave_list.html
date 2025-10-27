@@ -2,6 +2,24 @@
 {% load static %}
 {% block content %}
 
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3 class="sidebar-title">Admin Panel</h3>
+    <ul class="sidebar-menu">
+      <li><a href="{% url 'dashboard' %}" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      <li><a href="{% url 'manage_employees' %}"><i class="fas fa-users"></i> Manage Employees</a></li>
+      <li><a href="{% url 'admin_leave_list' %}"><i class="fas fa-calendar-check"></i> Manage Leaves</a></li>
+      <li><a href="{% url 'admin_profile' %}"><i class="fas fa-user-circle"></i> Profile</a></li>
+      <li><a href="{% url 'logout' %}" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="topbar">
+      <h2>ADMIN DASHBOARD</h2>
+    </div>
+
 <div class="leave-list-container">
   <div class="leave-header">
     <h2>📝 All Leave Applications</h2>

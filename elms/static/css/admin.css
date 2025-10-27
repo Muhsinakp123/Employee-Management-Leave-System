@@ -322,3 +322,62 @@
 .back-btn a:hover {
   background: #1e3a8a;
 }
+
+
+
+/* ===== Manage Employees Page Styling ===== */
+.manage-emp-container {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  font-family: "Poppins", sans-serif;
+}
+
+.manage-emp-container h2 {
+  color: #1e40af;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.manage-emp-table {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.manage-emp-table thead {
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  color: #fff;
+}
+
+.manage-emp-table th,
+.manage-emp-table td {
+  vertical-align: middle;
+  text-align: center;
+  font-size: 15px;
+  padding: 12px;
+}
+
+.manage-emp-table tr:hover {
+  background-color: #eef2ff;
+  transition: background 0.3s ease;
+}
+
+/* Buttons inside table */
+.emp-btn {
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+}
+
+.emp-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Empty state */
+.text-muted {
+  color: #6b7280 !important;
+}
