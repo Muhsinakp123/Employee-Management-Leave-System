@@ -1,0 +1,266 @@
+/* ===== Admin Dashboard Layout ===== */
+.admin-wrapper {
+  display: flex;
+  height: 100vh;
+  background: #f4f6f9;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background-color: #0f172a;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 18px;
+}
+
+.sidebar-menu a {
+  text-decoration: none;
+  color: #cbd5e1;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.sidebar-menu a i {
+  margin-right: 10px;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+  background-color: #1e293b;
+  color: #fff;
+}
+
+.sidebar-menu .logout {
+  color: #fff;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 25px;
+  overflow-y: auto;
+}
+
+/* Topbar */
+.topbar {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Welcome Card */
+.welcome-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.welcome-card p {
+  font-size: 18px;
+  margin: 0;
+}
+
+.welcome-card i {
+  font-size: 22px;
+  color: #2563eb;
+}
+
+/* Stats Section */
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.stat-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+}
+
+.stat-box .icon {
+  font-size: 32px;
+  color: #2563eb;
+  margin-bottom: 10px;
+}
+
+.stat-box h4 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.stat-box p {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+
+
+/* ====== Admin Leave List Page ====== */
+.leave-list-container {
+  max-width: 1100px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.leave-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.leave-header h2 {
+  color: #1d4ed8;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Table Styling */
+.leave-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.leave-table thead {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #fff;
+}
+
+.leave-table th,
+.leave-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.leave-table tbody tr:hover {
+  background-color: #f9fafb;
+  transition: 0.3s;
+}
+
+.no-data {
+  color: #888;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.status-badge.approved {
+  background-color: #22c55e;
+  color: white;
+}
+
+.status-badge.rejected {
+  background-color: #ef4444;
+  color: white;
+}
+
+.status-badge.pending {
+  background-color: #facc15;
+  color: #333;
+}
+
+/* Action Buttons */
+.action-form {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-approve,
+.btn-reject {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-approve {
+  background-color: #22c55e;
+}
+
+.btn-reject {
+  background-color: #ef4444;
+}
+
+.btn-approve:hover {
+  background-color: #16a34a;
+}
+
+.btn-reject:hover {
+  background-color: #dc2626;
+}
+
+/* Back Button */
+.back-btn {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.back-btn a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.back-btn a:hover {
+  text-decoration: underline;
+  color: #1e3a8a;
+}
+
