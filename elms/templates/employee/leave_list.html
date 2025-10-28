@@ -1,41 +1,51 @@
 {% extends "master.html" %}
 {% block content %}
-<h2>My Leave Applications</h2>
-<table class="table table-striped">
+<div class="leave-container">
+  <h2>My Leave Applications</h2>
+
+  <table class="leave-table">
     <thead>
-        <tr>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Reason</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
+      <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
-        {% for leave in leaves %}
-        <tr>
-            <td>{{ leave.start_date }}</td>
-            <td>{{ leave.end_date }}</td>
-            <td>{{ leave.reason }}</td>
-            <td>
-                {% if leave.status == 'Approved' %}
-                    <span class="badge bg-success">Approved</span>
-                {% elif leave.status == 'Rejected' %}
-                    <span class="badge bg-danger">Rejected</span>
-                {% else %}
-                    <span class="badge bg-warning">Pending</span>
-                {% endif %}
-            </td>
-            <td>
-                {% if leave.status == 'Pending' %}
-                    <a href="{% url 'leave_edit' leave.id %}" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="{% url 'leave_delete' leave.id %}" class="btn btn-sm btn-danger">Delete</a>
-                {% else %}
-                    -
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
+      {% for leave in leaves %}
+      <tr>
+        <td>{{ leave.start_date }}</td>
+        <td>{{ leave.end_date }}</td>
+        <td>{{ leave.reason }}</td>
+        <td>
+          {% if leave.status == 'Approved' %}
+            <span class="badge bg-success">Approved</span>
+          {% elif leave.status == 'Rejected' %}
+            <span class="badge bg-danger">Rejected</span>
+          {% else %}
+            <span class="badge bg-warning">Pending</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if leave.status == 'Pending' %}
+            <a href="{% url 'leave_edit' leave.id %}" class="btn btn-primary btn-sm">Edit</a>
+            <a href="{% url 'leave_delete' leave.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this leave?');">Delete</a>
+          {% else %}
+            -
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
     </tbody>
-</table>
+  </table>
+
+  <!-- 🔹 Back Home Button -->
+  <div class="text-center mt-4" style="text-align: center;margin-top: 13px;">
+    <a href="{% url 'home' %}" class="btn btn-secondary px-4 py-2">
+      ← Back to Home
+    </a>
+  </div>
+</div>
 {% endblock %}

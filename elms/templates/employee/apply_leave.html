@@ -2,9 +2,9 @@
 {% block title %}Apply Leave{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center min-vh-100">
-  <div class="card shadow-lg p-4" style="width: 500px; border-radius: 15px;">
-    <h3 class="text-center mb-4 fw-bold">Apply for Leave</h3>
+<div class="apply-leave-container">
+  <div class="apply-leave-card">
+    <h3 class="form-title">📝 Apply for Leave</h3>
 
     {% for message in messages %}
       <div class="alert alert-{{ message.tags }} text-center">{{ message }}</div>
@@ -12,25 +12,25 @@
 
     <form method="post" novalidate>
       {% csrf_token %}
-      <div class="mb-3">
-        <label for="id_start_date" class="form-label">Start Date</label>
+      <div class="form-group">
+        <label for="id_start_date">Start Date</label>
         {{ form.start_date }}
       </div>
 
-      <div class="mb-3">
-        <label for="id_end_date" class="form-label">End Date</label>
+      <div class="form-group">
+        <label for="id_end_date">End Date</label>
         {{ form.end_date }}
       </div>
 
-      <div class="mb-3">
-        <label for="id_reason" class="form-label">Reason</label>
+      <div class="form-group">
+        <label for="id_reason">Reason</label>
         {{ form.reason }}
       </div>
 
-      <button type="submit" class="btn btn-primary w-100" style="background: linear-gradient(90deg, #007bff, #6610f2); border: none;">
-        Submit Application
-      </button>
+      <button type="submit" class="submit-btn">Submit Application</button>
     </form>
+
+    <a href="{% url 'home' %}" class="back-btn">← Back to Home</a>
   </div>
 </div>
 {% endblock %}

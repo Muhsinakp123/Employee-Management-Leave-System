@@ -1,0 +1,554 @@
+/* ===== Employee Dashboard Styling ===== */
+.employee-dashboard {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  padding: 50px 20px;
+  background: #f4f6f9;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ---- Welcome Box ---- */
+.welcome-box {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #fff;
+  padding: 25px 95px;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(29, 78, 216, 0.3);
+  transition: 0.3s ease;
+}
+
+.welcome-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(29, 78, 216, 0.4);
+}
+
+.welcome-box h2 {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 24px;
+}
+
+.welcome-box p {
+  color: beige;
+  font-size: 16px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* ---- Card Grid ---- */
+.employee-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .employee-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Individual Card ---- */
+.emp-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 35px 25px;
+  text-decoration: none;
+  color: #1f2937;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-top: 4px solid transparent;
+}
+
+.emp-card i {
+  font-size: 40px;
+  color: #2563eb;
+  margin-bottom: 10px;
+}
+
+.emp-card h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 8px;
+}
+
+.emp-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+.emp-card:hover {
+  transform: translateY(-6px);
+  border-top: 4px solid #2563eb;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+}
+
+/* ---- Logout Card ---- */
+.emp-card.logout {
+  background: #ffffff;
+  color: #1f2937;
+}
+
+.emp-card.logout i {
+  color: #2563eb;
+}
+
+.emp-card.logout h4 {
+  color: #1e3a8a;
+}
+
+.emp-card.logout:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(239, 68, 68, 0.2);
+  border-top: 4px solid #2563eb;
+}
+
+
+
+/* ===== Apply Leave Page Styling ===== */
+.apply-leave-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  font-family: "Poppins", sans-serif;
+  padding: 20px;
+}
+
+.apply-leave-card {
+  background: #ffffff;
+  padding: 40px 70px 40px 40px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  transition: all 0.3s ease;
+}
+
+.apply-leave-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15);
+}
+
+/* ---- Title ---- */
+.form-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 25px;
+}
+
+/* ---- Form Fields ---- */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  transition: all 0.3s ease;
+  font-size: 15px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+}
+
+/* ---- Submit Button ---- */
+.submit-btn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 12px 0;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+}
+
+/* ---- Back to Home Button ---- */
+.back-btn {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+  color: #1e3a8a;
+  font-weight: 500;
+  background: #f1f5f9;
+  padding: 10px 0;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #e0e7ff;
+  color: #1d4ed8;
+}
+
+
+
+
+/* ===== Employee Profile Pages ===== */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  font-family: "Poppins", sans-serif;
+  padding: 20px;
+  width: 30%;
+}
+
+.profile-card {
+  background: #ffffff;
+  padding: 40px 35px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15);
+}
+
+/* ---- Title ---- */
+.profile-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-bottom: 25px;
+}
+
+/* ---- Profile Info ---- */
+.profile-card p {
+  font-size: 15px;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.profile-card strong {
+  color: #1d4ed8;
+}
+
+/* ---- Buttons ---- */
+.profile-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.profile-actions a,
+.profile-actions button {
+  flex: 1;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 0;
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-actions .btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.profile-actions .btn-primary:hover {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+}
+
+.profile-actions .btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.profile-actions .btn-danger:hover {
+  background: linear-gradient(135deg, #b91c1c, #dc2626);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+}
+
+.profile-actions .btn-secondary {
+  background: #e5e7eb;
+  color: #1e3a8a;
+}
+
+.profile-actions .btn-secondary:hover {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+/* ---- Form Fields (Update Profile) ---- */
+.profile-card form input,
+.profile-card form select,
+.profile-card form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.profile-card form input:focus,
+.profile-card form textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+}
+
+/* ---- Confirmation Message (Delete Page) ---- */
+.delete-warning {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+
+/* ===== Leave Management Styling ===== */
+.leave-container {
+  max-width: 1000px;
+  margin: 60px auto;
+  background: #ffffff;
+  padding: 40px 50px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: "Poppins", sans-serif;
+}
+
+/* ---- Header ---- */
+.leave-container h2 {
+  color: #1d4ed8;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---- Table Styling ---- */
+.leave-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.leave-table thead {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #fff;
+}
+
+.leave-table th,
+.leave-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.leave-table tbody tr:hover {
+  background-color: #f9fafb;
+  transition: 0.3s;
+}
+
+/* ---- Status Badges ---- */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.badge.bg-success {
+  background-color: #22c55e !important;
+}
+
+.badge.bg-danger {
+  background-color: #ef4444 !important;
+}
+
+.badge.bg-warning {
+  background-color: #facc15 !important;
+  color: #111827;
+}
+
+/* ---- Action Buttons ---- */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  text-decoration: none;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #b91c1c, #dc2626);
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+  color: #1e3a8a;
+}
+
+.btn-secondary:hover {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #1d4ed8, #0847f4);
+  color: white;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #15803d, #16a34a);
+}
+
+/* ---- Leave Details Card ---- */
+.leave-details-card {
+  max-width: 700px;
+  margin: 60px auto;
+  background: #ffffff;
+  padding: 40px 45px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.leave-details-card h2 {
+  text-align: center;
+  color: #1d4ed8;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.leave-details-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.leave-details-card th {
+  text-align: left;
+  color: #1e3a8a;
+  width: 35%;
+  padding: 10px 0;
+}
+
+.leave-details-card td {
+  padding: 10px 0;
+  color: #374151;
+}
+
+/* ---- Update Form ---- */
+.update-leave-card {
+  max-width: 700px;
+  margin: 60px auto;
+  background: #ffffff;
+  padding: 40px 50px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.update-leave-card h4 {
+  text-align: center;
+  color: #1d4ed8;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.update-leave-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 25px;
+}
+
+.update-leave-card th {
+  text-align: left;
+  color: #1e3a8a;
+  padding: 10px 0;
+  width: 35%;
+}
+
+.update-leave-card td {
+  padding: 10px 0;
+}
+
+.update-leave-card input,
+.update-leave-card textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f9fafb;
+  transition: 0.3s ease;
+}
+
+.update-leave-card input:focus,
+.update-leave-card textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+}

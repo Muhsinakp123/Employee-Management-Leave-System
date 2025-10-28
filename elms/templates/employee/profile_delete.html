@@ -1,14 +1,17 @@
 {% extends "master.html" %}
 {% block content %}
-<div class="container mt-5">
-    <h2>Delete Profile</h2>
-    <div class="card shadow-sm p-4" style="max-width: 600px;">
-        <p>Are you sure you want to delete your profile? This action cannot be undone.</p>
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Yes, Delete</button>
-            <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
-        </form>
-    </div>
+<div class="profile-container">
+  <div class="profile-card">
+    <h2 class="profile-title">⚠️ Delete Profile</h2>
+    <p class="delete-warning">Are you sure you want to delete your profile? This action cannot be undone.</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="profile-actions">
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock %}
