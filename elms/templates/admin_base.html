@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Admin Panel{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="admin-wrapper">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h3 class="sidebar-title">Admin Panel</h3>
+      <ul class="sidebar-menu">
+        <li><a href="{% url 'dashboard' %}" class="{% if request.path == '/dashboard/' %}active{% endif %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="{% url 'manage_employees' %}" class="{% if 'manage_employees' in request.path %}active{% endif %}"><i class="fas fa-users"></i> Manage Employees</a></li>
+        <li><a href="{% url 'admin_leave_list' %}" class="{% if 'admin_leave_list' in request.path %}active{% endif %}"><i class="fas fa-calendar-check"></i> Manage Leaves</a></li>
+        <li><a href="{% url 'admin_profile' %}" class="{% if 'admin_profile' in request.path %}active{% endif %}"><i class="fas fa-user-circle"></i> Profile</a></li>
+        <li>
+          <a href="{% url 'logout' %}" class="logout" id="logout-link">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="topbar">
+        <h2>ADMIN DASHBOARD</h2>
+      </div>
+
+      {% block content %}{% endblock %}
+    </div>
+
+  </div>
+
+  <!-- Logout Confirmation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const logoutLink = document.getElementById('logout-link');
+      if (logoutLink) {
+        logoutLink.addEventListener('click', function(event) {
+          event.preventDefault();
+          const confirmLogout = confirm("Are you sure you want to logout?");
+          if (confirmLogout) {
+            window.location.href = this.href;
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -7,56 +7,66 @@
   width: 100%;
 }
 
-/* Sidebar */
+/* ===== Sidebar (Updated Style Only) ===== */
 .sidebar {
   width: 240px;
-  background-color: #0f172a;
+  background-color: #1f2937;
   color: #fff;
+  padding: 20px 0;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  justify-content: start;
 }
 
 .sidebar-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 25px;
   text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #00c4ff;
 }
 
 .sidebar-menu {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .sidebar-menu li {
-  margin-bottom: 18px;
+  margin: 10px 0;
 }
 
 .sidebar-menu a {
-  text-decoration: none;
-  color: #cbd5e1;
-  font-size: 15px;
   display: flex;
   align-items: center;
-  padding: 10px 15px;
-  border-radius: 8px;
-  transition: 0.3s;
+  color: #e5e7eb;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  border-radius: 0;
 }
 
 .sidebar-menu a i {
-  margin-right: 10px;
+  margin-right: 12px;
+  font-size: 18px;
 }
 
+/* Active & Hover States */
 .sidebar-menu a:hover,
 .sidebar-menu a.active {
-  background-color: #1e293b;
-  color: #fff;
+  background-color: #374151;
+  color: #00c4ff;
+  border-left-color: #00c4ff;
 }
 
+/* Logout link color stays white */
 .sidebar-menu .logout {
   color: #fff;
 }
+
 
 /* Main Content */
 .main-content {
@@ -283,7 +293,7 @@
   padding: 40px 50px;
   max-width: 500px;
   width: 90%;
-  text-align: left;
+  text-align: center;
 }
 
 .admin-profile-card h3 {
@@ -325,59 +335,72 @@
 
 
 
-/* ===== Manage Employees Page Styling ===== */
+/* ===== Manage Employees (Updated to Match Manage Leaves) ===== */
 .manage-emp-container {
-  background: #f8fafc;
-  padding: 30px;
+  max-width: 1100px;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 30px 40px;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   font-family: "Poppins", sans-serif;
 }
 
-.manage-emp-container h2 {
-  color: #1e40af;
-  font-weight: 600;
+.manage-emp-header {
+  text-align: center;
   margin-bottom: 25px;
 }
 
+.manage-emp-header h2 {
+  color: #1d4ed8;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Table styling */
 .manage-emp-table {
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
 }
 
 .manage-emp-table thead {
-  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
   color: #fff;
 }
 
 .manage-emp-table th,
 .manage-emp-table td {
-  vertical-align: middle;
-  text-align: center;
-  font-size: 15px;
-  padding: 12px;
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
 }
 
-.manage-emp-table tr:hover {
-  background-color: #eef2ff;
-  transition: background 0.3s ease;
+.manage-emp-table tbody tr:hover {
+  background-color: #f9fafb;
+  transition: 0.3s;
 }
 
-/* Buttons inside table */
-.emp-btn {
-  border-radius: 6px;
-  padding: 6px 12px;
+/* Delete Button */
+.delete-btn {
+  display: inline-block;
+  background-color: #ef4444;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  text-decoration: none;
   font-size: 14px;
-  transition: transform 0.2s ease, opacity 0.3s ease;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.emp-btn:hover {
+.delete-btn:hover {
+  background-color: #dc2626;
   transform: translateY(-2px);
-  opacity: 0.9;
 }
 
-/* Empty state */
-.text-muted {
-  color: #6b7280 !important;
+/* Empty State */
+.no-data {
+  color: #888;
+  font-style: italic;
+  padding: 20px;
 }
