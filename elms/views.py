@@ -312,10 +312,13 @@ def admin_profile(request):
     admin_user = request.user
     return render(request, 'admin/admin_profile.html', {'admin_user': admin_user})
 
-def delete(request,id):
-    dele = Profile.objects.get(id=id)
-    dele.delete
-    return redirect(request,'admin/manage_employees')
+@login_required
+@user_passes_test(is_admin)
+def delete(request, emp_id):
+    employee = Profile.objects.get(id=emp_id)
+    employee.delete()
+    return redirect('manage_employees')
+
     
 
 def logout_view(request):
