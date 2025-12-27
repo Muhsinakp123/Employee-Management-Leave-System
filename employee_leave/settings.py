@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,17 @@ SECRET_KEY = 'django-insecure-d29$p-7@c%i5(p@8$8you7@*l!t)*tozncn8=f80xred)lp(0-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# RENDER DEPLOYING CODE START//
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME :
+    ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME,'localhost','127.0.0.1']
+else :
+    ALLOWED_HOSTS = ['localhost','127.0.0.1'] 
+    
+# RENDER DEPLOYING CODE END//    
+
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -48,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # RENDER DEPLOYING CODE 
 ]
 
 ROOT_URLCONF = 'employee_leave.urls'
@@ -117,6 +129,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR/'static']
+STATICFILES_DIRS = [BASE_DIR / 'static'] # RENDER DEPLOYING CODE 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # RENDER DEPLOYING CODE
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
